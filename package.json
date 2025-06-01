@@ -1,0 +1,27 @@
+{
+  "name": "mps-interface-adaptor",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "lint": "eslint --cache src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gnuxie",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@gnuxie/tsconfig": "^2.1.0",
+    "@types/node": "^20.17.57",
+    "eslint": "^9.28.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.0"
+  },
+  "peerDependencies": {
+    "@gnuxie/matrix-protection-suite": "^3.4.0",
+    "@gnuxie/typescript-result": "^1.0.0",
+    "@sinclair/typebox": "^0.34.13",
+    "@the-draupnir-project/interface-manager": "^4.2.3"
+  }
+}

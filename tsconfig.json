@@ -1,0 +1,9 @@
+{
+  "extends": "@gnuxie/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "declarationDir": "dist",
+    "jsx": "react",
+    "jsxFactory": "DeadDocumentJSX.JSXFactory",
+    "outDir": "dist",
+  }
+}
