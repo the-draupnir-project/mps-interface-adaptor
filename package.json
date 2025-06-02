@@ -1,5 +1,5 @@
 {
-  "name": "mps-interface-adaptor",
+  "name": "@the-draupnir-project/mps-interface-adaptor",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
