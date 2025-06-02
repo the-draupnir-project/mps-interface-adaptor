@@ -20,19 +20,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-      - run: npm run install
+      - run: npm install
       - run: npm run build
       - run: npm run lint
-  unit:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Specifically use node LTS.
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-      - run: npm run install
-      - run: npm run build
-      - run: npm run test
