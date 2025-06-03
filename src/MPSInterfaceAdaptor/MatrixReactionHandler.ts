@@ -17,7 +17,7 @@ import {
   Task,
   Value,
   isError,
-} from "@gnuxie/matrix-protection-suite";
+} from "matrix-protection-suite";
 import {
   StringRoomID,
   StringUserID,

@@ -20,7 +20,7 @@ import {
   ResultForUsersInRoom,
   RoomSetResult,
   isOk,
-} from "@gnuxie/matrix-protection-suite";
+} from "matrix-protection-suite";
 import {
   StringRoomID,
   MatrixRoomReference,

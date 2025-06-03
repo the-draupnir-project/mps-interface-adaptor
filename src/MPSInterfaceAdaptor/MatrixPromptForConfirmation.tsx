@@ -19,12 +19,7 @@ import {
   MatrixInterfaceCommandDispatcher,
   TextPresentationRenderer,
 } from "@the-draupnir-project/interface-manager";
-import {
-  Logger,
-  RoomEvent,
-  Task,
-  Value,
-} from "@gnuxie/matrix-protection-suite";
+import { Logger, RoomEvent, Task, Value } from "matrix-protection-suite";
 import {
   MatrixReactionHandler,
   ReactionListener,
