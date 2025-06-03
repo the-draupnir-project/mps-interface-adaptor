@@ -3,13 +3,25 @@
   "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "lint": "eslint --cache src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Gnuxie",
+  "author": {
+    "name": "Gnuxie",
+    "email": "Gnuxie@protonmail.com"
+  },
   "license": "Apache-2.0",
+  "repository": {
+    "url": "https://github.com/the-draupnir-project/mps-interface-adaptor.git",
+    "type": "git"
+  },
+  "private": false,
   "devDependencies": {
     "@eslint/js": "^9.28.0",
     "@gnuxie/tsconfig": "^2.1.0",
