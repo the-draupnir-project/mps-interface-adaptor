@@ -153,7 +153,7 @@ export class MatrixReactionHandler
       association,
       decodedAnnotation.ok[REACTION_ANNOTATION_KEY]["additional_context"],
       new Map(Object.entries(reactionMap)),
-      annotatedEvent
+      annotatedEvent.ok
     );
   }
 
