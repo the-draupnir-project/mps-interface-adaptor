@@ -12,6 +12,7 @@ import {
   ActionResult,
   ClientPlatform,
   Logger,
+  ReactionContent,
   ReactionEvent,
   RoomEvent,
   Task,
@@ -102,7 +103,7 @@ export class MatrixReactionHandler
     if (event.sender === this.clientUserID) {
       return;
     }
-    if (!Value.Check(ReactionEvent, event)) {
+    if (!Value.Check(ReactionContent, event.content)) {
       return;
     }
     const relatesTo = event.content["m.relates_to"];
@@ -210,17 +211,21 @@ export class MatrixReactionHandler
     eventID: StringEventID,
     reason?: string
   ): Promise<ActionResult<void>> {
-    const eventRelationsGetter =
-      this.clientPlatform.toRoomEventRelationsGetter();
     const redacter = this.clientPlatform.toRoomEventRedacter();
-    return await eventRelationsGetter.forEachRelation<ReactionEvent>(
-      roomID,
-      eventID,
-      {
+    return await this.clientPlatform
+      .toRoomEventRelations()
+      .toRoomEventRelationsIterator<ReactionEvent>(roomID, eventID, {
         relationType: "m.annotation",
         eventType: "m.reaction",
-        forEachCB: (event) => {
-          const key = event.content?.["m.relates_to"]?.key;
+        direction: "backwards",
+        limit: 100,
+      })
+      .forEachItem({
+        forEachItemCB: (event) => {
+          if (!Value.Check(ReactionContent, event.content)) {
+            return;
+          }
+          const key = event.content["m.relates_to"]?.key;
           // skip the bots own reactions that mark the event as complete
           if (key === "✅" || key === "❌") {
             return;
@@ -231,8 +236,7 @@ export class MatrixReactionHandler
             >
           );
         },
-      }
-    );
+      });
   }
 
   /**
