@@ -128,6 +128,17 @@ export function renderCommandHelp(
   ].join(" ");
 }
 
+export function renderErrorDetails(error: ActionError): DocumentNode {
+  return (
+    <details>
+      <summary>{error.mostRelevantElaboration}</summary>
+      {renderDetailsNotice(error)}
+      {renderElaborationTrail(error)}
+      {renderExceptionTrail(error)}
+    </details>
+  );
+}
+
 export async function replyToEventWithErrorDetails(
   roomMessageSender: RoomMessageSender,
   event: RoomEvent,
@@ -136,14 +147,7 @@ export async function replyToEventWithErrorDetails(
   return (await sendMatrixEventsFromDeadDocument(
     roomMessageSender,
     event.room_id,
-    <root>
-      <details>
-        <summary>{error.mostRelevantElaboration}</summary>
-        {renderDetailsNotice(error)}
-        {renderElaborationTrail(error)}
-        {renderExceptionTrail(error)}
-      </details>
-    </root>,
+    <root>{renderErrorDetails(error)}</root>,
     { replyToEvent: event }
   )) as Result<void>;
 }
