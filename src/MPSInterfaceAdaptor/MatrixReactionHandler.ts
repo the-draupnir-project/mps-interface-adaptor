@@ -100,6 +100,11 @@ export class MatrixReactionHandler
     if (roomID !== this.roomID) {
       return;
     }
+    if (roomID !== event.room_id) {
+      throw new TypeError(
+        "The MatrixReactionHandler is being used incorrectly"
+      );
+    }
     if (event.sender === this.clientUserID) {
       return;
     }
@@ -121,7 +126,12 @@ export class MatrixReactionHandler
       .toRoomEventGetter()
       .getEvent(roomID, relatedEventId);
     if (isError(annotatedEvent)) {
-      log.error("Unable to get annotated event", annotatedEvent.error);
+      log.error(
+        "Unable to get annotated event",
+        roomID,
+        relatedEventId,
+        annotatedEvent.error
+      );
       return;
     }
     if (!(REACTION_ANNOTATION_KEY in annotatedEvent.ok.content)) {
