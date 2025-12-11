@@ -190,15 +190,20 @@ export function renderUserOutcome(
 
 export function renderRoomSetResult(
   roomResults: RoomSetResult,
-  { summary }: { summary: DocumentNode }
+  {
+    summary,
+    showOnlyFailed,
+  }: { summary: DocumentNode; showOnlyFailed?: boolean }
 ): DocumentNode {
   return (
     <details>
       <summary>{summary}</summary>
       <ul>
-        {[...roomResults.map.entries()].map(([roomID, outcome]) => {
-          return <li>{renderRoomOutcome(roomID, outcome)}</li>;
-        })}
+        {[...roomResults.map.entries()]
+          .filter((entry) => (showOnlyFailed ? !entry[1].isOkay : true))
+          .map(([roomID, outcome]) => {
+            return <li>{renderRoomOutcome(roomID, outcome)}</li>;
+          })}
       </ul>
     </details>
   );
